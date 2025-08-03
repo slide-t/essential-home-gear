@@ -241,7 +241,7 @@
     <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
   </div>
 </div>
-
+<!--
 <script>
   const grid = document.getElementById("grid");
   const cartCount = document.getElementById("cartCount");
@@ -385,21 +385,8 @@ function updateCart() {
 
   renderCards();
 </script>
-  <script>
-  function showCartModal() {
-  const overlay = document.getElementById("cartModalOverlay");
-  overlay.style.display = overlay.style.display === "none" ? "flex" : "none";
-}
-  </script>
-  <script>
-  window.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll('.product-card');
-  cards.forEach(card => {
-    card.style.opacity = "1";
-    card.style.transform = "translateY(0)";
-  });
-});
-  </script>
+  -->
+  
   <div class="auth-wrapper" id="authModal">
   <div class="auth-card" id="authCard">
     <span class="close-modal-btn" onclick="handleAuthClose()">✖</span>
@@ -420,6 +407,7 @@ function updateCart() {
   <span id="greetingText"></span>
   <button onclick="logoutUser()" style="margin-left: 10px; background: #e63946; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Logout</button>
 </div>
+  <div id="footer-placeholder"></div>
   
 <script src="script.js"></script>
 
