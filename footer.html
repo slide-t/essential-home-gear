@@ -53,8 +53,27 @@
   </div>
 </footer>
 
+
+<!-- JavaScript for toggle -->
+<script>
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const content = toggle.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-down');
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-up');
+  });
+});
+</script>
+
+
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+
+
+
 
 <!-- CSS Styles -->
 <style>
@@ -142,17 +161,6 @@
 }
 </style>
 
-<!-- JavaScript for toggle -->
-<script>
-document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    const content = toggle.nextElementSibling;
-    content.style.display = content.style.display === 'block' ? 'none' : 'block';
-    toggle.querySelector('.icon i').classList.toggle('fa-chevron-down');
-    toggle.querySelector('.icon i').classList.toggle('fa-chevron-up');
-  });
-});
-</script>
 
 
 
