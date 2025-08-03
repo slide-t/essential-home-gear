@@ -243,7 +243,57 @@
   justify-content: center;
  }
 
+.btn-whatsapp {
+  background-color: #25D366;
+}
 
+.btn-email {
+  background-color: #E63946;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1da851;
+}
+
+.btn-email:hover {
+  background-color: #cc2e3e;
+}
+
+.btn-whatsapp span, .btn-email span {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+  .cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  color: #ff4d4d;
+}
+  .fade-out {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+ 
 
 
 
