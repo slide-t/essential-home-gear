@@ -1,4 +1,32 @@
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function() { console.log("Service Worker Registered"); });
+  }
+</script>
+<div id="footer-placeholder"></div>
 
+<script>
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+
+      // Optional: Load footer JS after injecting
+      const script = document.createElement('script');
+      script.src = 'footer-dropdown.js';
+      document.body.appendChild(script);
+    });
+</script>
+
+
+
+
+
+
+
+<script>
 let sliderIndex = 0;
 
 function renderSliderCards() {
@@ -28,3 +56,4 @@ function renderSliderCards() {
 // Start slider
 renderSliderCards();
 setInterval(renderSliderCards, 3000);
+</script>
