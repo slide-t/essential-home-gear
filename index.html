@@ -332,45 +332,7 @@ function filterProducts(category) {
   
      
 
-  function addToCart(index, btn) {
-    cart.push(sampleProducts[index]);
-    updateCart();
 
-    const buyBtn = btn.nextElementSibling;
-    buyBtn.style.display = "block";
-  }
-
-  function buyNow(index) {
-    const item = sampleProducts[index];
-    const message = `I want to buy:\n- ${item.name} for ₦${item.price}`;
-    const encoded = encodeURIComponent(message);
-    window.open(`https://wa.me/?text=${encoded}`, "_blank");
-  }
-function updateCart() {
-  cartItems.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((item, index) => {
-    total += item.price;
-
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      ${item.name} - ₦${item.price}
-      
-    cartItems.appendChild(div);
-  });
-
-  cartCount.textContent = cart.length;
-  totalPriceEl.textContent = total;
-
-  whatsappOrder.href = `https://wa.me/?text=${encodeURIComponent(
-    "I'm ordering:\n" +
-      cart.map((p) => `- ${p.name}: ₦${p.price}`).join("\n") +
-      `\nTotal: ₦${total}`
-  )}`;
-  
-}
   
   
 </script>
@@ -394,7 +356,7 @@ function renderSliderCards() {
       <h4>${product.name}</h4>
       <p>₦${product.price}</p>
       <button class="btn add-btn" onclick="addToCart(${sampleProducts.indexOf(product)}, this)">Add to Cart</button>
-      <button class="btn buy-btn" onclick="buyNow(${sampleProducts.indexOf(product)})">Buy Now</button>
+      <button class="btn uy-btn" onclick="buyNow(${sampleProducts.indexOf(product)})">Buy Now</button>
     `;
     sliderContainer.appendChild(card);
   });
