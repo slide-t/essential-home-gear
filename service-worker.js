@@ -7,7 +7,7 @@ const URLS_TO_CACHE = [
   '/essentialkitchen-culinary/manifest.json',
   '/essentialkitchen-culinary/footer.html',
   '/essentialkitchen-culinary/footer-dropdown.js',
-  '/essentialkitchen-culinary/footer.css',
+  '/essentialkitchen-culinary/footer.css'
   // Add images or other static assets here
 ];
 
