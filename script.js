@@ -204,19 +204,7 @@ function updateCart() {
   });
 
 
-
-
-
-<!-- PWA Service Worker -->
-
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(function() { console.log("Service Worker Registered"); });
-  });
-
-
-
-  fetch("footer.html")
+ fetch("footer.html")
     .then(res => res.text())
     .then(data => {
       document.getElementById("footer-placeholder").innerHTML = data;
@@ -226,14 +214,6 @@ function updateCart() {
       script.src = 'footer-dropdown.js';
       document.body.appendChild(script);
     });
-
-
-
-
-
-
-
-
 
 let sliderIndex = 0;
 
@@ -264,3 +244,19 @@ function renderSliderCards() {
 // Start slider
 renderSliderCards();
 setInterval(renderSliderCards, 3000);
+
+  function showCartModal() {
+  const overlay = document.getElementById("cartModalOverlay");
+  overlay.style.display = overlay.style.display === "none" ? "flex" : "none";
+}
+  
+  
+  window.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    card.style.opacity = "1";
+    card.style.transform = "translateY(0)";
+  });
+});
+  
+
