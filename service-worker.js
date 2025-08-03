@@ -3,9 +3,9 @@ self.addEventListener('install', function(e) {
     caches.open('kitchen-store-v4').then(function(cache) {
       return cache.addAll([
         '/',
-        '/index.html',
-        '/styles.css',
-        '/script.js',
+        '/main.html',
+        '/main.css',
+        '/main.js',
         '/manifest.json'
         // Add more assets here
       ]);
