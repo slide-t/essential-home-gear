@@ -2,6 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+<!-- SEO Meta Tags -->
+<meta name="description" content="Essential Kitchen Culinary - Discover quality kitchen gear, gadgets, and home culinary tools.">
+<meta name="keywords" content="kitchen, culinary, gadgets, appliances, essential kitchen gear, home cooking, blenders, air fryers">
+<meta name="author" content="Essential Kitchen Culinary">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph for social sharing -->
+<meta property="og:title" content="Essential Kitchen Culinary">
+<meta property="og:description" content="Shop and explore premium kitchen appliances and culinary gadgets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://slide-t.github.io/essentialkitchen-culinary/">
+<meta property="og:image" content="https://slide-t.github.io/essentialkitchen-culinary/icons/icon-512.png">
+
+<!-- Manifest & Icons -->
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="theme-color" content="#001219">
+
+
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="main.css"/>
   <title>Essential Kitchen Culinary</title>
@@ -452,5 +472,13 @@ function updateCart() {
     toggleAuthFlip(false);
   }
 </script>
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function() { console.log("Service Worker Registered"); });
+  }
+</script>
+  
 </body>
 </html>
