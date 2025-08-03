@@ -168,7 +168,42 @@ function updateCart() {
     document.getElementById('userGreeting').style.display = "none";
     location.reload(); // Refresh to check state again
   }
+// Show modal or greeting on page load
+window.onload = function () {
+  const user = JSON.parse(localStorage.getItem("authUser"));
+  const closedCount = parseInt(localStorage.getItem("authClosedCount")) || 0;
 
+  if (user) {
+    showGreeting(user);
+  } else if (closedCount < 5) {
+    setTimeout(() => {
+      toggleAuthFlip(true);
+    }, 20000);
+  }
+};
+
+// Handle signup
+document.getElementById("authForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+  const name = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const user = { name, email };
+  localStorage.setItem("authUser", JSON.stringify(user));
+  toggleAuthFlip(false);
+  showGreeting(user);
+  alert("Signup successful!");
+});
+
+// Close modal if user dismisses
+function handleAuthClose() {
+  let closedCount = parseInt(localStorage.getItem("authClosedCount")) || 0;
+  closedCount++;
+  localStorage.setItem("authClosedCount", closedCount);
+  toggleAuthFlip(false);
+}
+
+
+/*
   // Show modal or greeting on page load
   window.onload = function () {
     const user = JSON.parse(localStorage.getItem("authUser"));
@@ -201,7 +236,7 @@ function updateCart() {
     closedCount++;
     localStorage.setItem("authClosedCount", closedCount);
     toggleAuthFlip(false);
-  });
+  });*/
 
 
  fetch("footer.html")
