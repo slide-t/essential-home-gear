@@ -46,7 +46,7 @@
     }
 
     .add-btn {
-      background-color: #e63946;
+      background-color: #ff9900/*#e63946*/;
     }
 
     .add-btn:hover {
@@ -54,7 +54,7 @@
     }
 
     .buy-btn {
-      background-color: orange;
+      background-color: green;
       margin-top: 0.3rem;
       display: none;
     }
