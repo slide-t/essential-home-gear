@@ -1,13 +1,14 @@
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open('kitchen-store-v9.2').then(function(cache) {
+    caches.open('kitchen-store-v9.6').then(function(cache) {
       return cache.addAll([
         '/',
         '/index.html',
         '/main.css',
         '/script.js',
         '/manifest.json',
-        '/footer.html'
+        '/footer.html',
+        '/footer-dropdown.js'
         // Add more assets here
       ]);
     })
