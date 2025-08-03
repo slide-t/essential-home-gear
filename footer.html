@@ -1,14 +1,184 @@
 <!-- Footer HTML -->
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <div class="footer-about">
+      <h4>About Us</h4>
+      <p>We provide educational resources for primary school pupils, focusing on coding, computer skills, and national curriculum subjects.</p>
+    </div>
+
+    <!-- Quick Links with dropdown -->
+    <div class="footer-section">
+      <h4 class="dropdown-toggle">
+        Quick Links
+        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+      </h4>
+      <ul class="footer-links dropdown-content">
+        <li><a href="/">Home</a></li>
+        <li><a href="/curriculum">Curriculum</a></li>
+        <li><a href="/worksheets">Free Worksheets</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- FAQ with dropdown -->
+    <div class="footer-section">
+      <h4 class="dropdown-toggle">
+        FAQs
+        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+      </h4>
+      <ul class="footer-links dropdown-content">
+        <li><strong>What’s the best way to keep kids healthy?</strong><br> Encourage active play, healthy meals, and enough sleep.</li>
+        <li><strong>How can technology help in child development?</strong><br> Interactive learning boosts critical thinking and creativity.</li>
+        <li><a href="/faq">Learn More</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <p>Email: info@edukidsafrica.com</p>
+      <p>Whatsapp: +234-913-1697-494</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 EduKids Africa. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- CSS Styles -->
+<style>
+
+.site-footer {
+  background-color: pink /*#f8f9fa*/;
+  border-top: 2px solid #ddd;
+  padding: 40px 20px 10px;
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-container > div {
+  flex: 1 1 300px;
+  margin-bottom: 20px;
+}
+
+.footer-container h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #001219;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #001219;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #005f73;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  color: #001219;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #005f73;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.dropdown-toggle .icon {
+  margin-left: 10px;
+  font-size: 14px;
+}
+</style>
+
+<!-- JavaScript for toggle -->
+<script>
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const content = toggle.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-down');
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-up');
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer HTML --
 <footer class="site-footer dark-theme">
   <div class="footer-container">
     
-    <!-- About Section -->
+    <!-- About Section --
     <div class="footer-about">
       <h4><i class="fas fa-utensils"></i> About Us</h4>
       <p>Essential Kitchen Gear delivers trusted guides, tips, and reviews on modern kitchen gadgets to enhance your cooking experience.</p>
     </div>
 
-    <!-- Quick Links -->
+    <!-- Quick Links --
     <div class="footer-section">
       <h4 class="dropdown-toggle">
         <i class="fas fa-link"></i> Quick Links
@@ -23,7 +193,7 @@
       </ul>
     </div>
 
-    <!-- FAQ Section -->
+    <!-- FAQ Section --
     <div class="footer-section">
       <h4 class="dropdown-toggle">
         <i class="fas fa-question-circle"></i> FAQs
@@ -36,7 +206,7 @@
       </ul>
     </div>
 
-    <!-- Newsletter -->
+    <!-- Newsletter --
     <div class="footer-newsletter">
       <h4><i class="fas fa-envelope"></i> Subscribe</h4>
       <p>Get kitchen tips, gear updates, and exclusive offers straight to your inbox!</p>
@@ -46,7 +216,7 @@
       </form>
     </div>
 
-    <!-- Contact Section -->
+    <!-- Contact Section --
     <div class="footer-contact">
       <h4><i class="fas fa-phone-alt"></i> Contact Us</h4>
       <p>Email: support@essentialkitchenculinari.com</p>
@@ -65,10 +235,10 @@
   </div>
 </footer>
 
-<!-- Font Awesome -->
+<!-- Font Awesome --
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<!-- footer CSS  -->
+<!-- footer CSS  --
 <style>
 .site-footer.dark-theme {
   background-color: #001219;
@@ -183,7 +353,7 @@
 }
 </style>
 
-<!-- JavaScript for toggle dropdowns -->
+<!-- JavaScript for toggle dropdowns --
 <script>
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', () => {
