@@ -435,7 +435,38 @@ width:50px;
   display: flex;
 }
 
+.product-slider-section {
+  padding: 1rem;
+  background: #f9f9f9;
+  text-align: center;
+}
 
+.product-slider {
+  display: flex;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.product-card {
+  flex: 0 0 50%; /* Show 2 at a time */
+  box-sizing: border-box;
+  padding: 1rem;
+  transition: transform 0.8s ease;
+  animation: flipIn 0.8s ease;
+}
+
+@keyframes flipIn {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+ }
 
 
    
