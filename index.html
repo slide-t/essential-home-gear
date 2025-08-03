@@ -410,7 +410,13 @@ function updateCart() {
   <div id="footer-placeholder"></div>
   
 <script src="script.js"></script>
-
+<!-- PWA Service Worker -->
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(function() { console.log("Service Worker Registered"); });
+  });
+</script>
 
   
 </body>
