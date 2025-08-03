@@ -64,10 +64,10 @@
     }
 #cartIcon {
       position: fixed;
-      bottom: 15px;
+      top: 75px;
       right: 30px;
       transform: translateX(-50%);
-      background-color: #e63946;
+      background-color: #111/*#e63946*/;
       color: white;
       padding: 15px 24px;
       border-radius: 25px 0 0 25px;
