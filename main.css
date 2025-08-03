@@ -191,15 +191,15 @@
   text-align: center;
   flex: 1;
 }
-
+/*
 .logo-icon {
   font-size: 22px;
   border:2px solid #eee;
   border-radius:50%;
   padding: 20px;
-}
+}*/
 .logo-icon img {
-width:60px;
+width:30px;
  padding:8px;
  border:2px solid #eee;
   border-radius:50%;
