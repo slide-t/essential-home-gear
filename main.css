@@ -151,6 +151,40 @@
   color: #001219;
 }
 
+.filter-select {
+  padding: 10px;
+  width: 90%;
+  max-width: 300px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: border 0.3s;
+}
+
+.filter-select:focus {
+  border-color: #e63946;
+  outline: none;
+}
+  .mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #001219;
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 22px;
+}
+
 
 
 
