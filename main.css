@@ -386,6 +386,30 @@
   color: white;
  }
 
+.accordion-content, .accordion-sub-content {
+  display: none;
+  flex-direction: column;
+}
+
+.accordion-title, .accordion-sub-title {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 8px 0;
+}
+
+.accordion-item a, .accordion-sub-content a {
+  display: block;
+  padding: 4px 0;
+  padding-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.accordion-content.show,
+.accordion-sub-content.show {
+  display: flex;
+}
+
 
 
 
