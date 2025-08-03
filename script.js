@@ -167,7 +167,8 @@ function updateCart() {
     localStorage.setItem("authClosedCount", "0"); // Reset modal show count
     document.getElementById('userGreeting').style.display = "none";
     location.reload(); // Refresh to check state again
-  }
+  });
+
 // Show modal or greeting on page load
 window.onload = function () {
   const user = JSON.parse(localStorage.getItem("authUser"));
