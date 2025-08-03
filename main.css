@@ -54,13 +54,13 @@
     }
 
     .buy-btn {
-      background-color: green;
+      background-color:#009900 ;
       margin-top: 0.3rem;
       display: none;
     }
 
     .buy-btn:hover {
-      background-color: #ffaa33;
+      background-color: green;
     }
 #cartIcon {
   position: fixed;
