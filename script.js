@@ -6,6 +6,126 @@
   const whatsappOrder = document.getElementById("whatsappOrder");
   const cartModal = document.getElementById("cartModal");
 
+  let cart = [];
+
+  const sampleProducts = [
+    // your product objects...
+  ];
+
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  function renderCards() {
+    grid.innerHTML = "";
+    const shuffled = shuffleArray([...sampleProducts]); // copy and shuffle
+
+    shuffled.forEach((product, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h4>${product.name}</h4>
+        <p>₦${product.price}</p>
+        <button class="btn add-btn" onclick="addToCart(${i}, this)">Add to Cart</button>
+        <button class="btn buy-btn" onclick="buyNow(${i})">Buy Now</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function addToCart(index, btn) {
+    cart.push(sampleProducts[index]);
+    updateCart();
+
+    const buyBtn = btn.nextElementSibling;
+    buyBtn.style.display = "block";
+  }
+
+  function updateCart() {
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      total += item.price;
+
+      const div = document.createElement("div");
+      div.className = "cart-item";
+      div.innerHTML = `
+        ${item.name} - ₦${item.price}
+        <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
+      `;
+      cartItems.appendChild(div);
+    });
+
+    cartCount.textContent = cart.length;
+    totalPriceEl.textContent = total;
+
+    whatsappOrder.href = `https://wa.me/?text=${encodeURIComponent(
+      "I'm ordering:\n" +
+        cart.map((p) => `- ${p.name}: ₦${p.price}`).join("\n") +
+        `\nTotal: ₦${total}`
+    )}`;
+  }
+
+  function removeFromCart(index) {
+    const confirmed = confirm("Are you sure you want to remove this item?");
+    if (!confirmed) return;
+
+    const itemElement = cartItems.children[index];
+    itemElement.classList.add("fade-out");
+
+    setTimeout(() => {
+      cart.splice(index, 1);
+      updateCart();
+    }, 300);
+  }
+
+  function showCartModal() {
+    cartModal.style.display = cartModal.style.display === "block" ? "none" : "block";
+  }
+
+  function toggleMenu() {
+    document.getElementById("sideMenu").classList.toggle("show");
+  }
+
+  function toggleAccordion(element) {
+    const content = element.nextElementSibling;
+    content.style.display = content.style.display === "block" ? "none" : "block";
+  }
+
+  function filterProducts(category) {
+    const cards = document.querySelectorAll(".card");
+    cards.forEach((card, index) => {
+      const itemCat = sampleProducts[index].category;
+      card.style.display =
+        category === "all" || itemCat === category ? "block" : "none";
+    });
+  }
+
+  // Initialize
+  renderCards();
+
+
+
+
+
+
+
+
+
+/*
+  const grid = document.getElementById("grid");
+  const cartCount = document.getElementById("cartCount");
+  const cartItems = document.getElementById("cartItems");
+  const totalPriceEl = document.getElementById("totalPrice");
+  const whatsappOrder = document.getElementById("whatsappOrder");
+  const cartModal = document.getElementById("cartModal");
+
   const sampleProducts = [
   // Kitchen Utensils
   { name: "Cooking Pot Set", price: 18000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
@@ -133,7 +253,7 @@ function updateCart() {
     cart.splice(index, 1);
     updateCart();
   }, 300);
-}
+
   
   function showCartModal() {
     cartModal.style.display = cartModal.style.display === "none" ? "block" : "none";
@@ -141,7 +261,7 @@ function updateCart() {
 
   renderCards();
 });
-
+*/
 
   function toggleAuthFlip(show = true) {
     const wrapper = document.getElementById('authModal');
