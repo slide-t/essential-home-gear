@@ -1,6 +1,6 @@
 self.addEventListener('install', function(e) {
   e.waitUntil(
-    caches.open('kitchen-store-v7').then(function(cache) {
+    caches.open('kitchen-store-v9').then(function(cache) {
       return cache.addAll([
         '/',
         '/index.html',
