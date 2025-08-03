@@ -488,8 +488,14 @@ function updateCart() {
     .then(res => res.text())
     .then(data => {
       document.getElementById("footer-placeholder").innerHTML = data;
+
+      // Optional: Load footer JS after injecting
+      const script = document.createElement('script');
+      script.src = 'footer-dropdown.js';
+      document.body.appendChild(script);
     });
 </script>
+
 
 
   
