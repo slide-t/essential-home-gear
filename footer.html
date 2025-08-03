@@ -1,4 +1,196 @@
-<!-- footer.html -->
-<footer class="site-footer">
-  <p>&copy; 2025 Essential Kitchen Culinary. All rights reserved.</p>
+<!-- Footer HTML -->
+<footer class="site-footer dark-theme">
+  <div class="footer-container">
+    
+    <!-- About Section -->
+    <div class="footer-about">
+      <h4><i class="fas fa-utensils"></i> About Us</h4>
+      <p>Essential Kitchen Gear delivers trusted guides, tips, and reviews on modern kitchen gadgets to enhance your cooking experience.</p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section">
+      <h4 class="dropdown-toggle">
+        <i class="fas fa-link"></i> Quick Links
+        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+      </h4>
+      <ul class="footer-links dropdown-content">
+        <li><a href="/">Home</a></li>
+        <li><a href="/gadgets">Gadgets</a></li>
+        <li><a href="/reviews">Reviews</a></li>
+        <li><a href="/faqs">FAQs</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="footer-section">
+      <h4 class="dropdown-toggle">
+        <i class="fas fa-question-circle"></i> FAQs
+        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+      </h4>
+      <ul class="footer-links dropdown-content">
+        <li><strong>Best budget blender?</strong><br> Check our 2025 guide for top-rated blenders under $50.</li>
+        <li><strong>Air fryer or oven?</strong><br> Explore pros and cons to decide what fits your kitchen.</li>
+        <li><a href="/faqs">More Questions</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="footer-newsletter">
+      <h4><i class="fas fa-envelope"></i> Subscribe</h4>
+      <p>Get kitchen tips, gear updates, and exclusive offers straight to your inbox!</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="footer-contact">
+      <h4><i class="fas fa-phone-alt"></i> Contact Us</h4>
+      <p>Email: support@essentialkitchenculinari.com</p>
+      <p>WhatsApp: +234-913-1697-494</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/home"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/p/DKNTCuUSCcn/?igsh=YzljYTk1ODg3Zg=="><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Essential Kitchen Gear. All rights reserved.</p>
+  </div>
 </footer>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- footer CSS  -->
+<style>
+.site-footer.dark-theme {
+  background-color: #001219;
+  color: #f8f9fa;
+  font-family: 'Roboto', sans-serif;
+  padding: 40px 20px 10px;
+  border-top: 2px solid #005f73;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-container > div {
+  flex: 1 1 250px;
+  margin-bottom: 20px;
+}
+
+.footer-container h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-container h4 i {
+  margin-right: 8px;
+}
+
+.footer-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.footer-links a {
+  color: #f8f9fa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #94d2bd;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  color: #f8f9fa;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #94d2bd;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  color: #94d2bd;
+}
+
+.dropdown-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.dropdown-toggle .icon {
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/* Newsletter form */
+.footer-newsletter input[type="email"] {
+  padding: 10px;
+  width: 70%;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  font-size: 14px;
+}
+
+.footer-newsletter button {
+  padding: 10px;
+  border: none;
+  background-color: #005f73;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.footer-newsletter button:hover {
+  background-color: #0a9396;
+}
+</style>
+
+<!-- JavaScript for toggle dropdowns -->
+<script>
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const content = toggle.nextElementSibling;
+    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-down');
+    toggle.querySelector('.icon i').classList.toggle('fa-chevron-up');
+  });
+});
+</script>
