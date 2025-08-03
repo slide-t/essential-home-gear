@@ -1,24 +1,48 @@
-self.addEventListener('install', function(e) {
-  e.waitUntil(
-    caches.open('kitchen-store-v3.3').then(function(cache) {
-      return cache.addAll([
-        '/',
-        '/index.html',
-        '/main.css',
-        '/script.js',
-        '/manifest.json',
-        '/footer.html',
-        '/footer-dropdown.js'
-        // Add more assets here
-      ]);
+const CACHE_NAME = 'kitchen-store-v5';
+const URLS_TO_CACHE = [
+  '/essentialkitchen-culinary/', // root for GitHub Pages
+  '/essentialkitchen-culinary/index.html',
+  '/essentialkitchen-culinary/main.css',
+  '/essentialkitchen-culinary/script.js',
+  '/essentialkitchen-culinary/manifest.json',
+  '/essentialkitchen-culinary/footer.html',
+  '/essentialkitchen-culinary/footer-dropdown.js',
+  // Add images or other static assets here
+];
+
+// Install event
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(URLS_TO_CACHE);
     })
   );
 });
 
-self.addEventListener('fetch', function(e) {
-  e.respondWith(
-    caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+// Activate event (clean old caches)
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keyList => {
+      return Promise.all(
+        keyList.map(key => {
+          if (key !== CACHE_NAME) {
+            return caches.delete(key);
+          }
+        })
+      );
+    })
+  );
+  self.clients.claim();
+});
+
+// Fetch event
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cachedResponse => {
+      return cachedResponse || fetch(event.request).catch(() => {
+        // Optional fallback (e.g., offline.html)
+        return caches.match('/essentialkitchen-culinary/index.html');
+      });
     })
   );
 });
