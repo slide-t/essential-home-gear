@@ -52,9 +52,23 @@
     <p>&copy; 2025 EduKids Africa. All rights reserved.</p>
   </div>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      content.style.display = content.style.display === 'block' ? 'none' : 'block';
+      toggle.querySelector('.icon i').classList.toggle('fa-chevron-down');
+      toggle.querySelector('.icon i').classList.toggle('fa-chevron-up');
+    });
+  });
+});
+</script>
 
 
-<!-- JavaScript for toggle -->
+
+
+<!-- JavaScript for toggle --
 <script>
 document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
   toggle.addEventListener('click', () => {
