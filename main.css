@@ -248,7 +248,9 @@ width:50px;
   backdrop-filter: blur(10px); /* glass effect */
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+#cartModal {
+  display: none;
+}
 
 .modal-buttons {
   margin-top: 1rem;
