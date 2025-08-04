@@ -1,4 +1,5 @@
-  * {
+/*
+* {
       box-sizing: border-box;
     }
 
@@ -46,7 +47,7 @@
     }
 
     .add-btn {
-      background-color: #ff9900/*#e63946*/;
+      background-color: #ff9900/*#e63946*;
     }
 
     .add-btn:hover {
@@ -62,6 +63,7 @@
     .buy-btn:hover {
       background-color: green;
     }
+/*
 #cartIcon {
   position: fixed;
   top: 180px;
@@ -222,29 +224,29 @@ width:50px;
  /*padding:8px;*/
  border:2px solid #eee;
   border-radius:50%;
-}
+}/*
   .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  background: rgba(0, 0, 0, 0.5); //semi-transparent black 
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
 .cart-modal {
-  background: rgba(255, 255, 255, 0.05); /* transparent white */
+  background: rgba(255, 255, 255, 0.05); // transparent white /
   border-radius: 10px;
   padding: 1.5rem;
   width: 90%;
   max-width: 400px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
   animation: fadeIn 0.3s ease-in-out;
-  color: white; /* white text */
-  backdrop-filter: blur(10px); /* glass effect */
+  color: white; //white text 
+  backdrop-filter: blur(10px); // glass effect 
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -319,7 +321,7 @@ width:50px;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
  
-/* Fade-in with slide effect */
+/* Fade-in with slide effect *
 @keyframes fadeSlideUp {
   from {
     opacity: 0;
