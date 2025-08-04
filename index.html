@@ -92,7 +92,46 @@
     .buy-btn:hover {
       background-color: #ffaa33;
     }
+#cartIcon {
+  position: fixed;
+  top: 180px;
+  right: -20px;
+  background-color: #111;
+  color: white;
+  padding: 20px 40px 20px 20px;
+  border-radius: 30px 0 0 30px;
+  font-weight: bold;
+  z-index: 1000;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+#cartIcon:hover {
+  transform: scale(1.05);
+  background-color: #d62828;
+}
+
+#cartCount {
+  background-color: white;
+  color: #e63946;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+/*
     #cartIcon {
       position: fixed;
       bottom: 15px;
@@ -111,7 +150,8 @@
       .grid {
         grid-template-columns: repeat(4, 1fr);
       }
-    }
+    }*/
+    
   #menuToggle {
   background: #001219;
   color: white;
@@ -634,7 +674,39 @@
   const cartModal = document.getElementById("cartModal");
 
   const sampleProducts = [
-  // Kitchen Utensils
+// Kitchen Utensils
+  { name: "Cooking Pot Set", price: 18000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
+  { name: "Knife Set", price: 7000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
+  { name: "Cutlery Set", price: 5000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
+  { name: "Chopping Board", price: 3000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
+
+  // Home Appliances
+  { name: "Blender", price: 15000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Air Fryer", price: 30000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Microwave Oven", price: 50000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Toaster", price: 8000, image: "https://via.placeholder.com/150", category: "appliances" },
+
+  // Office Stationery
+  { name: "A4 Paper (500 sheets)", price: 3500, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Ballpoint Pens (Pack of 10)", price: 1200, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Stapler & Pins Set", price: 2000, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Notebook Set", price: 2500, image: "https://via.placeholder.com/150", category: "stationery" },
+
+  // Clothing
+  { name: "Men's T-Shirt", price: 6000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEidob1XsnsVWcj4zqtoN28boO205T2pd-79_FdNGTgyeB3_RJl5oeoVK1D6gGVkTrkuHt_YRytu0nJKPvlI6YY4rBnju8CRHxImUUPbcbqvpXfd7PiBa8iTLIgMJLlykwtGKgTqdv0-jZDH1EG-Z-Y0-HRtYskVaVbSqiPu9VmLvJNSpSdjX72ZczQUPVg/s320/1000049671.jpg", category: "clothing" },
+  { name: "Women's Gown", price: 15000, image: "https://via.placeholder.com/150", category: "clothing" },
+  { name: "Children's Wear Set", price: 9000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgcKl_6Yi7sb7qzCvqhFw40KwNcYXWPwzdw2ObehpFjGBWP8TrLouyHqnXwo_T0Yg1e3Kr0xvoZY_5tUvCdyIBRVOVF7Mp19J7GtQR_HUa8M4ExH0elHTXBbAh__BwKCMiykkgQnYlHsQXJy65H1wHN4lpX_cGw3E6NNuCsSXTrx1vjBPHL0gfTqCmDnl0/s320/1000049670.jpg", category: "clothing" },
+  { name: "Unisex Joggers", price: 8000, image: "https://via.placeholder.com/150", category: "clothing" },
+
+  // Interior Decor
+  { name: "Wall Clock", price: 7000, image: "https://via.placeholder.com/150", category: "decor" },
+  { name: "Table Lamp", price: 9000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjwUUeor0iItkzjIkFvlxGfTefwXOGKevJzJLkFAk0yiOPQIXksZcBlw7xSikBR-Q6GqHbIl9i7d6nLynuzi8TLIGK3Az1UlN3f9CaadWbkpia0lZnGWnp8eUyrgFWpTZTO4DeonsVe2x8-TxfSC3tPb0Ugofr68Vbizctm-uALdB8Jv6cC7TBYLKUdzjI/s320/1000049674.jpg", category: "decor" },
+  { name: "Flower Vase", price: 6000, image: "https://via.placeholder.com/150", category: "decor" },
+  { name: "Wall Art Canvas", price: 12000, image: "https://via.placeholder.com/150", category: "decor" },
+];
+
+    
+ /* // Kitchen Utensils
   { name: "Cooking Pot Set", price: 18000, image: "https://via.placeholder.com/150", category: "kitchen" },
   { name: "Knife Set", price: 7000, image: "https://via.placeholder.com/150", category: "kitchen" },
   { name: "Cutlery Set", price: 5000, image: "https://via.placeholder.com/150", category: "kitchen" },
@@ -663,7 +735,7 @@
   { name: "Table Lamp", price: 9000, image: "https://via.placeholder.com/150", category: "decor" },
   { name: "Flower Vase", price: 6000, image: "https://via.placeholder.com/150", category: "decor" },
   { name: "Wall Art Canvas", price: 12000, image: "https://via.placeholder.com/150", category: "decor" },
-];
+];*/
 
   let cart = [];
 function toggleMenu() {
@@ -1203,6 +1275,7 @@ function updateCart() {
   const cartModal = document.getElementById("cartModal");
 
   const sampleProducts = [
+  
   // Kitchen Utensils
   { name: "Cooking Pot Set", price: 18000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
   { name: "Knife Set", price: 7000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjLVUrkBzsG8_J-VDvcSYd_yaqeyyZNpdqfASLApwDtwPpPkBA_KwwmovV2LitgVygj23zchNe-3OYQddkuXv_4huONpnOELk6P7WHDuobpyZ3bDGrDcbY41bMNUADLNszrhrX-1i7KKxq9yCwRMrwv91AGvZXEK1kasVYq77kxQgvnJQaiP0E13y1WYLU/s320/1000049051.jpg", category: "kitchen" },
