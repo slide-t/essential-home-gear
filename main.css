@@ -224,7 +224,20 @@ width:50px;
  /*padding:8px;*/
  border:2px solid #eee;
   border-radius:50%;
-}/*
+}
+    .buy-btn {
+      background-color:#009900 ;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .buy-btn:hover {
+      background-color: green;
+    }
+
+
+
+/*
   .modal-overlay {
   position: fixed;
   top: 0;
