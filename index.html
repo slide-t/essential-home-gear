@@ -19,6 +19,881 @@
 <!-- Manifest & Icons -->
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
+<meta name="theme-color" content="#001219"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!--<link rel="stylesheet" href="main.css"/>-->
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Grid</title>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+      padding: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+
+    .card h4 {
+      margin: 0.5rem 0;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      margin-top: 0.5rem;
+      cursor: pointer;
+      width: 100%;
+      font-weight: bold;
+    }
+
+    .add-btn {
+      background-color: #e63946;
+    }
+
+    .add-btn:hover {
+      background-color: #ff6b6b;
+    }
+
+    .buy-btn {
+      background-color: orange;
+      margin-top: 0.3rem;
+      display: none;
+    }
+
+    .buy-btn:hover {
+      background-color: #ffaa33;
+    }
+
+    #cartIcon {
+      position: fixed;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #e63946;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      z-index: 1000;
+      cursor: pointer;
+    }
+
+    @media (min-width: 768px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  #menuToggle {
+  background: #001219;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#sideMenu {
+  position: fixed;
+  top: 50px;
+  left: -80%;
+  width: 80%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+  padding: 1rem;
+  transition: left 0.3s ease-in-out;
+  z-index: 1001;
+  overflow-y: auto;
+}
+
+#sideMenu.show {
+  left: 0;
+}
+
+.close-btn {
+  font-size: 20px;
+  text-align: right;
+  cursor: pointer;
+  color: #e63946;
+}
+
+.accordion-title {
+  font-weight: bold;
+  padding: 10px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.accordion-content {
+  display: none;
+  padding-left: 1rem;
+}
+
+.accordion-content a {
+  display: block;
+  padding: 5px 0;
+  color: #333;
+  text-decoration: none;
+}
+.accordion-content a:hover {
+  color: #e63946;
+}
+  .filter-container {
+  padding: 1rem;
+  background: #ffffff;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.filter-label {
+  display: block;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+  color: #001219;
+}
+
+.filter-select {
+  padding: 10px;
+  width: 90%;
+  max-width: 300px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: border 0.3s;
+}
+
+.filter-select:focus {
+  border-color: #e63946;
+  outline: none;
+}
+  .mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #001219;
+  color: white;
+  padding: 10px 15px;
+  font-size: 18px;
+  position: sticky;
+  top: 0;
+  z-index: 1002;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu-icon {
+  cursor: pointer;
+  font-size: 22px;
+}
+
+.site-name {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: center;
+  flex: 1;
+}
+
+.logo-icon {
+  font-size: 22px;
+  border:2px solid #eee;
+  border-radius:50%;
+  padding: 8px;
+}
+  .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.cart-modal {
+  background: rgba(255, 255, 255, 0.05); /* transparent white */
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.3s ease-in-out;
+  color: white; /* white text */
+  backdrop-filter: blur(10px); /* glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+.modal-buttons {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.btn-whatsapp, .btn-email {
+  text-decoration: none;
+  padding: 10px 15px;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+}
+
+.btn-email {
+  background-color: #E63946;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1da851;
+}
+
+.btn-email:hover {
+  background-color: #cc2e3e;
+}
+
+.btn-whatsapp span, .btn-email span {
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+  .cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.remove-btn:hover {
+  color: #ff4d4d;
+}
+  .fade-out {
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+ 
+/* Fade-in with slide effect */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.grid {
+  animation: fadeSlideUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+/* Optional: Add delay for a staggered effect */
+.grid:nth-child(1) { animation-delay: 0.1s; }
+.grid:nth-child(2) { animation-delay: 0.2s; }
+.grid:nth-child(3) { animation-delay: 0.3s; }
+.grid:nth-child(4) { animation-delay: 0.4s; }
+/* Add more if needed */
+
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+  .auth-wrapper {
+  perspective: 1000px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  max-width: 360px;
+  display: none;
+  z-index: 9999;
+}
+
+.auth-card {
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+  transform-origin: bottom center;
+  transform: rotateX(90deg);
+  transition: transform 0.6s ease;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.auth-card.show {
+  transform: rotateX(0deg);
+}
+
+.auth-card input,
+.auth-card button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+}
+
+.auth-card input {
+  background: #fff;
+  color: #000;
+}
+
+.auth-card button {
+  background: #2ecc71;
+  color: white;
+  cursor: pointer;
+}
+
+.close-btn {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+}
+  </style>
+</head>
+<body>
+
+<!-- Mobile Header -->
+<div class="mobile-header">
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  <div class="site-name">ShopZone</div>
+  <div class="logo-icon">🛍️</div>
+</div>
+<!-- Slide-out Menu -->
+<div id="sideMenu">
+  <div class="close-btn" onclick="toggleMenu()">✕</div>
+
+  <div class="accordion">
+    <div class="accordion-item">
+      <div class="accordion-title" onclick="toggleAccordion(this)">Kitchen Utensils</div>
+      <div class="accordion-content">
+        <a href="#">Pots & Pans</a>
+        <a href="#">Cutlery</a>
+        <a href="#">Knives</a>
+        <a href="#">Chopping Boards</a>
+<a href="#">Measuring Cups & Spoons</a>
+<a href="#">Mixing Bowls</a>
+<a href="#">Graters</a>
+<a href="#">Colanders & Strainers</a>
+<a href="#">Ladles & Serving Spoons</a>
+<a href="#">Tongs</a>
+<a href="#">Whisks</a>
+<a href="#">Peelers</a>
+<a href="#">Can Openers</a>
+<a href="#">Spatulas</a>
+<a href="#">Rolling Pins</a>
+<a href="#">Baking Trays</a>
+<a href="#">Oven Mitts</a>
+<a href="#">Garlic Press</a>
+<a href="#">Salad Spinners</a>
+<a href="#">Food Scales</a>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-title" onclick="toggleAccordion(this)">Home Appliances</div>
+      <div class="accordion-content">
+        <a href="#">Blenders</a>
+        <a href="#">Toasters</a>
+        <a href="#">Microwaves</a>
+        <a href="#">Air Fryers</a>
+<a href="#">Electric Kettles</a>
+<a href="#">Coffee Makers</a>
+<a href="#">Refrigerators</a>
+<a href="#">Freezers</a>
+<a href="#">Dishwashers</a>
+<a href="#">Electric Cookers</a>
+<a href="#">Water Dispensers</a>
+<a href="#">Washing Machines</a>
+<a href="#">Dryers</a>
+<a href="#">Rice Cookers</a>
+<a href="#">Sandwich Makers</a>
+<a href="#">Juicers</a>
+<a href="#">Slow Cookers</a>
+<a href="#">Pressure Cookers</a>
+<a href="#">Food Processors</a>
+<a href="#">Electric Grills</a>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <div class="accordion-title" onclick="toggleAccordion(this)">Office Stationery</div>
+      <div class="accordion-content">
+        <a href="#">Pens</a>
+        <a href="#">Paper</a>
+        <a href="#">Staplers</a>
+<a href="#">Highlighters</a>
+<a href="#">Folders</a>
+<a href="#">Binders</a>
+<a href="#">Sticky Notes</a>
+<a href="#">Paper Clips</a>
+<a href="#">Envelopes</a>
+<a href="#">Markers</a>
+<a href="#">Correction Fluid</a>
+<a href="#">Scissors</a>
+<a href="#">Tape Dispensers</a>
+<a href="#">Hole Punchers</a>
+<a href="#">Desk Organizers</a>
+<a href="#">Whiteboards</a>
+<a href="#">Calculators</a>
+<a href="#">Label Makers</a>
+<a href="#">Rulers</a>
+        
+      </div>
+    </div>
+
+    <div class="accordion-item">
+  <div class="accordion-title" onclick="toggleAccordion(this)">Clothing</div>
+  <div class="accordion-content">
+    <div class="accordion-sub-item">
+      <div class="accordion-sub-title" onclick="toggleAccordion(this)">Men</div>
+      <div class="accordion-sub-content">
+        <a href="#">Shirts</a>
+        <a href="#">Trousers</a>
+        <a href="#">Suits</a>
+      </div>
+    </div>
+
+    <div class="accordion-sub-item">
+      <div class="accordion-sub-title" onclick="toggleAccordion(this)">Women</div>
+      <div class="accordion-sub-content">
+        <a href="#">Dresses</a>
+        <a href="#">Skirts</a>
+        <a href="#">Blouses</a>
+      </div>
+    </div>
+
+    <div class="accordion-sub-item">
+      <div class="accordion-sub-title" onclick="toggleAccordion(this)">Children</div>
+      <div class="accordion-sub-content">
+        <a href="#">T-Shirts</a>
+        <a href="#">Shorts</a>
+        <a href="#">Sleepwear</a>
+      </div>
+    </div>
+
+    <a href="#">Casual Wear</a>
+    <a href="#">Formal Wear</a>
+    <a href="#">Sportswear</a>
+    <a href="#">Underwear</a>
+    <a href="#">Sleepwear</a>
+    <a href="#">Footwear</a>
+    <a href="#">Accessories</a>
+  </div>
+</div>
+
+   <!-- <div class="accordion-item">
+      <div class="accordion-title" onclick="toggleAccordion(this)">Interior Decor</div>
+      <div class="accordion-content">
+        <a href="#">Wall Art</a>
+        <a href="#">Lamps</a>
+        <a href="#">Vases</a>-->
+<div class="accordion-item">
+      <div class="accordion-title" onclick="toggleAccordion(this)">Interior Decor</div>
+      <div class="accordion-content">
+        <a href="#">Wall Art</a>
+        <a href="#">Lamps</a>
+        <a href="#">Vases</a>
+        <a href="#">Wall Art</a>
+<a href="#">Throw Pillows</a>
+<a href="#">Curtains</a>
+<a href="#">Mirrors</a>
+<a href="#">Wall Clocks</a>
+<a href="#">Candle Holders</a>
+<a href="#">Photo Frames</a>
+<a href="#">Decorative Plants</a>
+<a href="#">Table Centerpieces</a>
+<a href="#">Rugs & Carpets</a>
+<a href="#">Shelves</a>
+<a href="#">Chandeliers</a>
+<a href="#">Wall Stickers</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  <!-- Filter -->
+<div class="filter-container">
+  <label for="categoryFilter" class="filter-label">Filter by Category</label>
+  <select id="categoryFilter" class="filter-select" onchange="filterProducts(this.value)">
+    <option value="all">All</option>
+    <option value="kitchen">Kitchen Utensils</option>
+    <option value="appliances">Home Appliances</option>
+    <option value="stationery">Office Stationery</option>
+    <option value="clothing">Clothing</option>
+    <option value="decor">Interior Decor</option>
+  </select>
+</div>
+  <!-- slider -->
+<section class="slider-section">
+  <h2>🆕 Latest Products</h2>
+  <div class="slider-container" id="productSlider"></div>
+</section>
+ 
+<div class="grid" id="grid"></div>
+
+<div id="cartIcon" onclick="showCartModal()">
+  🛒 Cart <span id="cartCount">0</span>
+</div>
+
+  <!-- Modal Overlay -->
+<div id="cartModalOverlay" class="modal-overlay" style="display: none;">
+  <div id="cartModal" class="cart-modal">
+    <div style="text-align:right; margin-bottom:10px;">
+  <button onclick="showCartModal()" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
+</div>
+    <h3>Your Cart</h3>
+    <div id="cartItems"></div>
+    <p>Total: ₦<span id="totalPrice">0</span></p>
+    <div class="modal-buttons">
+      <a id="whatsappOrder" href="#" target="_blank" class="btn-whatsapp">
+        <span>📱</span> WhatsApp Order
+      </a>
+      <a href="mailto:support@example.com" class="btn-email">
+        <span>📧</span> Email Order
+      </a>
+    </div>
+    <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
+  </div>
+</div>
+
+<script>
+  const grid = document.getElementById("grid");
+  const cartCount = document.getElementById("cartCount");
+  const cartItems = document.getElementById("cartItems");
+  const totalPriceEl = document.getElementById("totalPrice");
+  const whatsappOrder = document.getElementById("whatsappOrder");
+  const cartModal = document.getElementById("cartModal");
+
+  const sampleProducts = [
+  // Kitchen Utensils
+  { name: "Cooking Pot Set", price: 18000, image: "https://via.placeholder.com/150", category: "kitchen" },
+  { name: "Knife Set", price: 7000, image: "https://via.placeholder.com/150", category: "kitchen" },
+  { name: "Cutlery Set", price: 5000, image: "https://via.placeholder.com/150", category: "kitchen" },
+  { name: "Chopping Board", price: 3000, image: "https://via.placeholder.com/150", category: "kitchen" },
+
+  // Home Appliances
+  { name: "Blender", price: 15000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Air Fryer", price: 30000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Microwave Oven", price: 50000, image: "https://via.placeholder.com/150", category: "appliances" },
+  { name: "Toaster", price: 8000, image: "https://via.placeholder.com/150", category: "appliances" },
+
+  // Office Stationery
+  { name: "A4 Paper (500 sheets)", price: 3500, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Ballpoint Pens (Pack of 10)", price: 1200, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Stapler & Pins Set", price: 2000, image: "https://via.placeholder.com/150", category: "stationery" },
+  { name: "Notebook Set", price: 2500, image: "https://via.placeholder.com/150", category: "stationery" },
+
+  // Clothing
+  { name: "Men's T-Shirt", price: 6000, image: "https://via.placeholder.com/150", category: "clothing" },
+  { name: "Women's Gown", price: 15000, image: "https://via.placeholder.com/150", category: "clothing" },
+  { name: "Children's Wear Set", price: 9000, image: "https://via.placeholder.com/150", category: "clothing" },
+  { name: "Unisex Joggers", price: 8000, image: "https://via.placeholder.com/150", category: "clothing" },
+
+  // Interior Decor
+  { name: "Wall Clock", price: 7000, image: "https://via.placeholder.com/150", category: "decor" },
+  { name: "Table Lamp", price: 9000, image: "https://via.placeholder.com/150", category: "decor" },
+  { name: "Flower Vase", price: 6000, image: "https://via.placeholder.com/150", category: "decor" },
+  { name: "Wall Art Canvas", price: 12000, image: "https://via.placeholder.com/150", category: "decor" },
+];
+
+  let cart = [];
+function toggleMenu() {
+  document.getElementById("sideMenu").classList.toggle("show");
+}
+
+function toggleAccordion(element) {
+  const content = element.nextElementSibling;
+  content.style.display = content.style.display === "block" ? "none" : "block";
+}
+
+  function filterProducts(category) {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card, index) => {
+    const itemCat = sampleProducts[index].category;
+    card.style.display =
+      category === "all" || itemCat === category ? "block" : "none";
+  });
+}
+
+function filterProducts(category) {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card, index) => {
+    const itemCat = sampleProducts[index].category;
+    card.style.display =
+      category === "all" || itemCat === category ? "block" : "none";
+  });
+}
+  function renderCards() {
+    grid.innerHTML = "";
+    sampleProducts.forEach((product, i) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" />
+        <h4>${product.name}</h4>
+        <p>₦${product.price}</p>
+        <button class="btn add-btn" onclick="addToCart(${i}, this)">Add to Cart</button>
+        <button class="btn buy-btn" onclick="buyNow(${i})">Buy Now</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function addToCart(index, btn) {
+    cart.push(sampleProducts[index]);
+    updateCart();
+
+    const buyBtn = btn.nextElementSibling;
+    buyBtn.style.display = "block";
+  }
+
+  function buyNow(index) {
+    const item = sampleProducts[index];
+    const message = `I want to buy:\n- ${item.name} for ₦${item.price}`;
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/?text=${encoded}`, "_blank");
+  }
+function updateCart() {
+  cartItems.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    const div = document.createElement("div");
+    div.className = "cart-item";
+    div.innerHTML = `
+      ${item.name} - ₦${item.price}
+      <button class="remove-btn" onclick="removeFromCart(${index})">✕</button>
+    `;
+    cartItems.appendChild(div);
+  });
+
+  cartCount.textContent = cart.length;
+  totalPriceEl.textContent = total;
+
+  whatsappOrder.href = `https://wa.me/?text=${encodeURIComponent(
+    "I'm ordering:\n" +
+      cart.map((p) => `- ${p.name}: ₦${p.price}`).join("\n") +
+      `\nTotal: ₦${total}`
+  )}`;
+  
+}
+  function removeFromCart(index) {
+  const confirmed = confirm("Are you sure you want to remove this item?");
+  if (!confirmed) return;
+
+  const itemElement = cartItems.children[index];
+  itemElement.classList.add("fade-out");
+
+  // Wait for animation to finish before removing
+  setTimeout(() => {
+    cart.splice(index, 1);
+    updateCart();
+  }, 300);
+}
+  
+  function showCartModal() {
+    cartModal.style.display = cartModal.style.display === "none" ? "block" : "none";
+  }
+
+  renderCards();
+</script>
+  <script>
+  function showCartModal() {
+  const overlay = document.getElementById("cartModalOverlay");
+  overlay.style.display = overlay.style.display === "none" ? "flex" : "none";
+}
+  </script>
+  <script>
+  window.addEventListener("DOMContentLoaded", () => {
+  const cards = document.querySelectorAll('.product-card');
+  cards.forEach(card => {
+    card.style.opacity = "1";
+    card.style.transform = "translateY(0)";
+  });
+});
+  </script>
+  <div class="auth-wrapper" id="authModal">
+  <div class="auth-card" id="authCard">
+    <span class="close-btn" onclick="handleAuthClose()">✖</span>
+    <h3>Join Us</h3>
+    <p style="color:#fff;">
+      We respect your privacy. Your data stays safe.
+      <br />
+      <a href="your-privacy-policy-link.html" style="text-decoration: underline; color: #80ffdb;" target="_blank">Read more</a>
+    </p>
+    <form id="authForm">
+      <input type="text" id="username" placeholder="Enter name" required />
+      <input type="email" id="email" placeholder="Enter email" required />
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+  <div id="userGreeting" style="display: none; position: fixed; top: 20px; right: 20px; background: #1d3557; color: #fff; padding: 10px 20px; border-radius: 8px; z-index: 10000;">
+  <span id="greetingText"></span>
+  <button onclick="logoutUser()" style="margin-left: 10px; background: #e63946; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer;">Logout</button>
+</div>
+  <script>
+  function toggleAuthFlip(show = true) {
+    const wrapper = document.getElementById('authModal');
+    const card = document.getElementById('authCard');
+    if (show) {
+      wrapper.style.display = "block";
+      setTimeout(() => card.classList.add("show"), 50);
+    } else {
+      card.classList.remove("show");
+      setTimeout(() => wrapper.style.display = "none", 500);
+    }
+  }
+
+  function showGreeting(user) {
+    const greeting = document.getElementById('userGreeting');
+    const text = document.getElementById('greetingText');
+    text.textContent = `Welcome, ${user.name}`;
+    greeting.style.display = 'flex';
+  }
+
+  function logoutUser() {
+    localStorage.removeItem("authUser");
+    localStorage.setItem("authClosedCount", "0"); // Reset modal show count
+    document.getElementById('userGreeting').style.display = "none";
+    location.reload(); // Refresh to check state again
+  }
+
+  // Show modal or greeting on page load
+  window.onload = function () {
+    const user = JSON.parse(localStorage.getItem("authUser"));
+    const closedCount = parseInt(localStorage.getItem("authClosedCount")) || 0;
+
+    if (user) {
+      showGreeting(user);
+    } else if (closedCount < 5) {
+      setTimeout(() => {
+        toggleAuthFlip(true);
+      }, 20000);
+    }
+  }
+
+  // Handle signup
+  document.getElementById("authForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const user = { name, email };
+    localStorage.setItem("authUser", JSON.stringify(user));
+    toggleAuthFlip(false);
+    showGreeting(user);
+    alert("Signup successful!");
+  });
+
+  // Close modal if user dismisses
+  function handleAuthClose() {
+    let closedCount = parseInt(localStorage.getItem("authClosedCount")) || 0;
+    closedCount++;
+    localStorage.setItem("authClosedCount", closedCount);
+    toggleAuthFlip(false);
+  }
+</script>
+  <!--
+</body>
+</html>
+-->
+
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+<!-- SEO Meta Tags --
+  <meta name="description" content="ThriveNest is your go-to destination for kitchen gear, smart living tips, family wellness, and daily essentials to make life easier and better at home.">
+<meta name="description" content="Essential Kitchen Culinary - Discover quality kitchen gear, gadgets, and home culinary tools.">
+<meta name="keywords" content="kitchen, culinary, gadgets, appliances, essential kitchen gear, home cooking, blenders, air fryers">
+<meta name="author" content="Essential Kitchen Culinary">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Open Graph for social sharing --
+<meta property="og:title" content="Essential Kitchen Culinary">
+<meta property="og:description" content="Shop and explore premium kitchen appliances and culinary gadgets.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://slide-t.github.io/essentialkitchen-culinary/">
+<meta property="og:image" content="https://slide-t.github.io/essentialkitchen-culinary/icons/icon-512.png">
+
+<!-- Manifest & Icons --
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
 <meta name="theme-color" content="#001219">
 
 
@@ -75,14 +950,14 @@
 </head>
 <body>
 
-<!-- Mobile Header -->
+<!-- Mobile Header --
 <div class="mobile-header">
   <div class="menu-icon" onclick="toggleMenu()">☰</div>
   <div class="site-name">Essential Kitchen Culinary</div>
-  <!--<div class="logo-icon">🛍️</div>-->
+  <!--<div class="logo-icon">🛍️</div>--
   <div class="logo-icon"><img src=" https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiDHfJ0Rz3S_B-aDHCVTWg8DYsr0FJ4qd3HPi9hoHM-Dy8eUV7MiRbrmYxg3xVPexwo0vtTmFlaih9uHeHRcYR7FviDiiXwKjp03QGLPOvoW6uIP8t65zf5dPGCKyp3L3T0JWaNVR04scfwpTk0b9MGXf-eaC84lsineFyXe8WuK2Yl7Cm3cVxcBt_BGHU/s320/1000049532.png" alt="shopping-png"></div>          
 </div>
-<!-- Slide-out Menu -->
+<!-- Slide-out Menu --
 <div id="sideMenu">
   <div class="close-btn" onclick="toggleMenu()">✕</div>
 
@@ -176,6 +1051,7 @@
         <a href="#">Children</a>
       </div>
     </div>-->
+<!--
     <div class="accordion-item">
   <div class="accordion-title" onclick="toggleAccordion(this)">Clothing</div>
   <div class="accordion-content">
@@ -241,7 +1117,7 @@
 </div>
 
 
-  <!-- Filter -->
+  <!-- Filter --
 <div class="filter-container">
   <label for="categoryFilter" class="filter-label">Filter by Category</label>
   <select id="categoryFilter" class="filter-select" onchange="filterProducts(this.value)">
@@ -253,21 +1129,22 @@
     <option value="decor">Interior Decor</option>
   </select>
 </div>
- <!-- slider -->
+
+ <!-- slider --
 <section class="slider-section">
   <h2>🆕 Latest Products</h2>
   <div class="slider-container" id="productSlider"></div>
 </section>
 
 
-  <!--slider end here-->
+  <!--slider end here--
 <div class="grid" id="grid"></div>
 <!--
 <div onclick="toggleCartModal()" class="cart-icon">
   🛒 <span>Cart</span>
   <span id="cartCount">0</span>
 </div>
-  -->
+  
 
 <div id="cartIcon" onclick="showCartModal()">
   🛒 Cart <span id="cartCount">0</span>
@@ -275,7 +1152,7 @@
 
   
   <!-- Modal Overlay -->
-<!-- Cart Modal Overlay -->
+<!-- Cart Modal Overlay --
 <div id="cartModalOverlay" class="modal-overlay" style="display: none;">
   <div class="cart-modal">
     <div style="text-align:right; margin-bottom:10px;">
@@ -315,7 +1192,7 @@
     <button class="remove-btn" onclick="removeFromCart(${index})">🗑️</button>
   </div>
 </div>
-  -->
+  
 
 <script>
   const grid = document.getElementById("grid");
@@ -487,7 +1364,7 @@ function closeCartModal() {
   cartModalOverlay.style.display = "none";
   }
 </script>
-
+-->
   <script>
 let sliderIndex = 0;
 
@@ -542,7 +1419,7 @@ setInterval(renderSliderCards, 3000);
 </div>
   <div id="footer-placeholder"></div>
   
-<!--<script src="script.js"></script>-->
+<script src="script.js"></script>
 <script>
   const cartModalOverlay = document.getElementById("cartModalOverlay");
   const cartCount = document.getElementById("cartCount");
