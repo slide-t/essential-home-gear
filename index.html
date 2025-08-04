@@ -482,6 +482,62 @@ setInterval(renderSliderCards, 3000);
   <div id="footer-placeholder"></div>
   
 <!--<script src="script.js"></script>-->
+<script>
+  const cartModalOverlay = document.getElementById("cartModalOverlay");
+  const cartCount = document.getElementById("cartCount");
+  const cartItemsContainer = document.getElementById("cartItems");
+  const totalPriceElement = document.getElementById("totalPrice");
+
+  let cart = [];
+
+  function toggleCartModal() {
+    cartModalOverlay.style.display = 
+      cartModalOverlay.style.display === "none" ? "block" : "none";
+    updateCartUI();
+  }
+
+  function addToCart(product) {
+    cart.push(product);
+    updateCartCount();
+    updateCartUI();
+  }
+
+  function updateCartCount() {
+    cartCount.textContent = cart.length;
+  }
+
+  function updateCartUI() {
+    cartItemsContainer.innerHTML = "";
+    let total = 0;
+
+    cart.forEach((item, index) => {
+      const itemDiv = document.createElement("div");
+      itemDiv.innerHTML = `
+        <p><strong>${item.name}</strong> - ₦${item.price}</p>
+        <button onclick="removeFromCart(${index})" class="remove-btn">🗑️ Remove</button>
+      `;
+      cartItemsContainer.appendChild(itemDiv);
+      total += item.price;
+    });
+
+    totalPriceElement.textContent = total;
+
+    const whatsappOrder = document.getElementById("whatsappOrder");
+    let message = "Hello, I want to order:\n";
+    cart.forEach(item => {
+      message += `- ${item.name} (₦${item.price})\n`;
+    });
+    message += `Total: ₦${total}`;
+    whatsappOrder.href = `https://wa.me/2347012345678?text=${encodeURIComponent(message)}`;
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartCount();
+    updateCartUI();
+  }
+</script>
+  
 <!-- PWA Service Worker -->
 <script>
   if ('serviceWorker' in navigator) {
