@@ -448,7 +448,7 @@
   cursor: pointer;
 }
 
-.close-btn {
+.close-modal-btn {
   position: absolute;
   right: 15px;
   top: 10px;
@@ -706,7 +706,7 @@
 <div id="cartModalOverlay" class="modal-overlay" style="display: none;">
   <div id="cartModal" class="cart-modal">
     <div style="text-align:right; margin-bottom:10px;">
-  <button onclick="showCartModal()" style="background:none; border:none; font-size:20px; cursor:pointer;">✕</button>
+  <button onclick="showCartModal()" style="background:none; border:none; font-size:20px; cursor:pointer;color:#fff;">✕</button>
 </div>
     <h3>Your Cart</h3>
     <div id="cartItems"></div>
@@ -915,7 +915,7 @@ function updateCart() {
   </script>
   <div class="auth-wrapper" id="authModal">
   <div class="auth-card" id="authCard">
-    <span class="close-btn" onclick="handleAuthClose()">✖</span>
+    <span class="close-modal-btn" onclick="handleAuthClose()">✖</span>
     <h3>Join Us</h3>
     <p style="color:#fff;">
       We respect your privacy. Your data stays safe.
