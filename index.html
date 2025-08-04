@@ -471,6 +471,21 @@ function filterProducts(category) {
 
   // Initialize
   renderCards();
+
+  // Reference the full modal overlay, not just the modal box
+const cartModalOverlay = document.getElementById("cartModalOverlay");
+
+// Make sure cart icon toggles the overlay display
+const cartIcon = document.getElementById("cartIcon"); // Add this ID to your icon element in HTML
+cartIcon.addEventListener("click", () => {
+  cartModalOverlay.style.display =
+    cartModalOverlay.style.display === "block" ? "none" : "block";
+});
+
+// Also allow modal close button to hide it
+function closeCartModal() {
+  cartModalOverlay.style.display = "none";
+  }
 </script>
 
   <script>
