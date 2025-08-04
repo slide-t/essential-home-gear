@@ -1741,7 +1741,18 @@ setInterval(renderSliderCards, 3000);
     <p class="welcome-text">Welcome to Our Website</p>
   </div>
 </div>
-
+<script>
+  window.addEventListener("load", () => {
+    const modal = document.getElementById("loaderModal");
+    setTimeout(() => {
+      modal.style.opacity = '0';
+      modal.style.transition = 'opacity 1s ease-in-out';
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 1000);
+    }, 5000); // delay before fading out
+  });
+</script>
   
 </body>
 </html>
