@@ -1642,7 +1642,33 @@ setInterval(renderSliderCards, 3000);
       .then(function() { console.log("Service Worker Registered"); });
   });
 </script>
+<script>
+  function shuffleCards() {
+    const grid = document.getElementById("grid");
+    const cards = Array.from(grid.children);
 
+    // Fade out all cards
+    cards.forEach(card => {
+      card.style.transition = "opacity 0.5s";
+      card.style.opacity = 0;
+    });
+
+    // Wait for fade-out to complete before shuffling
+    setTimeout(() => {
+      const shuffled = cards.sort(() => Math.random() - 0.5);
+
+      shuffled.forEach(card => grid.appendChild(card));
+
+      // Fade cards back in
+      shuffled.forEach(card => {
+        card.style.opacity = 1;
+      });
+    }, 500);
+  }
+
+  // 🔁 Start auto shuffle every 10 seconds
+  setInterval(shuffleCards, 10000);
+</script>
   
 </body>
 </html>
