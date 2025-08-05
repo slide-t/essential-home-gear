@@ -6,6 +6,9 @@
   <meta name="keywords" content="FAQs, Essential Home Gear, kitchen gadgets, delivery questions, returns, product details, Nigeria home products" />
   <meta name="author" content="SlideTeck | Essential Home Gear" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
   <title>FAQs - Essential Home Gear</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
@@ -132,6 +135,27 @@
         align-items: center;
       }
     }
+  .home-button {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-family: sans-serif;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .home-button i {
+    margin-right: 6px;
+  }
+
+  .home-button:hover {
+    background: #000;
+    color: #fff;
+  }
+      
   </style>
 </head>
 <body>
@@ -150,7 +174,9 @@
       <button class="btn-accept" onclick="acceptCookies()">Accept</button>
     </div>
   </div>
-
+<a href="index.html" class="home-button">
+  <i class="fas fa-home"></i> Home
+</a>
   <script>
     const faqs = [
       { q: "What is Essential Home Gear?", a: "It’s an online store offering kitchen and home essentials — carefully selected for modern Nigerian homes." },
