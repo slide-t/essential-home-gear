@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Find answers to frequently asked questions about ordering, delivery, returns, and product information for Essential Home Gear. We help customers shop smarter for kitchen and home appliances." />
+  <meta name="keywords" content="FAQs, Essential Home Gear, kitchen gadgets, delivery questions, returns, product details, Nigeria home products" />
+  <meta name="author" content="SlideTeck | Essential Home Gear" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FAQs - Essential Home Gear</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+    .faq-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .faq-container h1 {
+      text-align: center;
+      color: #001219;
+      margin-bottom: 30px;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .search-box input {
+      padding: 10px 15px;
+      width: 75%;
+      max-width: 600px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      transition: all 0.4s ease;
+    }
+    .search-box input:focus {
+      width: 85%;
+      outline: none;
+      box-shadow: 0 0 8px rgba(0, 18, 25, 0.3);
+      border-color: #001219;
+    }
+    .search-box button {
+      padding: 10px 40px;
+      background-color: #001219;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .search-box button:hover {
+      background-color: #00303d;
+    }
+    .faq-item {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+      cursor: pointer;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #001219;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.5s ease;
+      opacity: 0;
+      margin-top: 10px;
+    }
+    .faq-answer.show {
+      max-height: 500px;
+      opacity: 1;
+    }
+    .faq-answer p {
+      margin: 0;
+      line-height: 1.6;
+    }
+    .icon {
+      margin-left: 10px;
+    }
+    #cookie-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #222;
+      color: #fff;
+      padding: 16px 20px;
+      font-size: 14px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    #cookie-banner p {
+      margin: 0;
+      line-height: 1.5;
+    }
+    #cookie-banner .btn-accept {
+      align-self: flex-start;
+      background-color: gold;
+      border: none;
+      color: #000;
+      padding: 8px 16px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #cookie-banner .btn-accept:hover {
+      background-color: #e6c200;
+    }
+    @media screen and (min-width: 600px) {
+      #cookie-banner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="faq-container">
+    <h1>Frequently Asked Questions</h1>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search Essential Home Gear FAQs..." />
+      <button onclick="filterFAQs()">Search</button>
+    </div>
+    <div id="faq-list"></div>
+    <div id="cookie-banner">
+      <p>
+        We use cookies to improve your experience on our site. By using our site, you agree to our 
+        <a href="https://slide-t.github.io/essential-home-gear/#privacy-policy" style="color: gold; text-decoration: underline;">Privacy Policy</a>.
+      </p>
+      <button class="btn-accept" onclick="acceptCookies()">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    const faqs = [
+      { q: "What is Essential Home Gear?", a: "It’s an online store offering kitchen and home essentials — carefully selected for modern Nigerian homes." },
+      { q: "Do you offer delivery?", a: "Yes. We deliver nationwide within 2–5 working days depending on your location." },
+      { q: "How can I place an order?", a: "Visit our homepage, click a product, and choose 'Order via WhatsApp' or fill the order form." },
+      { q: "Do you accept pay on delivery?", a: "Yes, but only for select locations. Contact us to confirm availability in your area." },
+      { q: "How do I become a vendor?", a: "Visit our [Vendor Page](https://slide-t.github.io/essential-home-gear/#vendor) to submit your product details." },
+      { q: "What if I receive a damaged item?", a: "Notify us within 48 hours with photos. We’ll arrange for a replacement or refund." },
+      { q: "Can I learn website or coding through your platform?", a: "Yes, visit [SlideTeck Portfolio](https://slide-t.github.io/myportfolio/#training) to explore available training." },
+      { q: "Where are you located?", a: "We’re based in Lagos, Nigeria, but operate fully online." },
+      { q: "Is it safe to shop here?", a: "Absolutely. We respect privacy, secure transactions, and verify every product listed." }
+    ];
+
+    const faqList = document.getElementById("faq-list");
+
+    function renderFAQs(data) {
+      faqList.innerHTML = "";
+      data.forEach((item) => {
+        const faqItem = document.createElement("div");
+        faqItem.className = "faq-item";
+
+        const question = document.createElement("div");
+        question.className = "faq-question";
+        question.innerHTML = `<span>${item.q}</span><span class="icon"><i class="fas fa-chevron-down"></i></span>`;
+
+        const answer = document.createElement("div");
+        answer.className = "faq-answer";
+        answer.innerHTML = `<p>${item.a}</p>`;
+
+        question.addEventListener("click", () => {
+          answer.classList.toggle("show");
+          const icon = question.querySelector("i");
+          icon.classList.toggle("fa-chevron-down");
+          icon.classList.toggle("fa-chevron-up");
+        });
+
+        faqItem.appendChild(question);
+        faqItem.appendChild(answer);
+        faqList.appendChild(faqItem);
+      });
+    }
+
+    function filterFAQs() {
+      const input = document.getElementById("searchInput").value.trim().toLowerCase();
+      const filtered = faqs.filter(f =>
+        f.q.toLowerCase().includes(input) || f.a.toLowerCase().includes(input)
+      );
+      renderFAQs(filtered);
+    }
+
+    document.getElementById("searchInput").addEventListener("input", filterFAQs);
+
+    window.addEventListener("DOMContentLoaded", function () {
+      renderFAQs(faqs);
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-banner').style.display = 'flex';
+      }
+    });
+
+    function acceptCookies() {
+      localStorage.setItem('cookiesAccepted', 'yes');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
