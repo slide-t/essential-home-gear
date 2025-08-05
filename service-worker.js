@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kitchen-store-v3.5';
+const CACHE_NAME = 'kitchen-store-v4.5';
 const URLS_TO_CACHE = [
   '/essentialkitchen-culinary/', // root for GitHub Pages
   '/essentialkitchen-culinary/index.html',
@@ -7,7 +7,8 @@ const URLS_TO_CACHE = [
   '/essentialkitchen-culinary/manifest.json',
   '/essentialkitchen-culinary/footer.html',
   '/essentialkitchen-culinary/footer-dropdown.js',
-  '/essentialkitchen-culinary/footer.css'
+  '/essentialkitchen-culinary/footer.css',
+  '/essentialkitchen-culinary/images',
   // Add images or other static assets here
 ];
 
