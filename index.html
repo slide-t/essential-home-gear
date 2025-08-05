@@ -869,8 +869,9 @@ width:50px;
   { name: "External Hard Drive 1TB", price: 20000, image: "https://via.placeholder.com/150", category: "accessory", brand: "Seagate" },
   { name: "USB-C Hub", price: 7500, image: "https://via.placeholder.com/150", category: "accessory", brand: "Anker" }
 ];  
-  
-  let cart = [];
+
+let cart = [];
+
 function toggleMenu() {
   document.getElementById("sideMenu").classList.toggle("show");
 }
@@ -880,6 +881,36 @@ function toggleAccordion(element) {
   content.style.display = content.style.display === "block" ? "none" : "block";
 }
 
+function filterProducts(category) {
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card, index) => {
+    const itemCat = sampleProducts[index].category;
+    card.style.display =
+      category === "all" || itemCat === category ? "block" : "none";
+  });
+}
+
+// Automatically close menu when a link is clicked
+document.addEventListener("DOMContentLoaded", function () {
+  const menuLinks = document.querySelectorAll("#sideMenu a");
+  menuLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      document.getElementById("sideMenu").classList.remove("show");
+    });
+  });
+});
+  
+  
+  /*let cart = [];
+function toggleMenu() {
+  document.getElementById("sideMenu").classList.toggle("show");
+}
+
+function toggleAccordion(element) {
+  const content = element.nextElementSibling;
+  content.style.display = content.style.display === "block" ? "none" : "block";
+}
+*/
   function filterProducts(category) {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card, index) => {
