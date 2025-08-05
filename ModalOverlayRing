@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modal Logo Animation</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #111;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.07); /* Water transparent */
+      backdrop-filter: blur(5px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .logo-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+
+    .rotating-ring {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 6px solid transparent;
+      border-top-color: #ff5555;
+      animation: rotate 2s linear infinite, colorchange 4s linear infinite;
+    }
+
+    .logo-img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: zoomInOut 3s ease-in-out infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes zoomInOut {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.2); }
+    }
+
+    @keyframes colorchange {
+      0% { border-top-color: #ff5555; }
+      25% { border-top-color: #ffcc00; }
+      50% { border-top-color: #00ccff; }
+      75% { border-top-color: #00ff99; }
+      100% { border-top-color: #ff5555; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Overlay Modal -->
+<div class="overlay" id="introModal">
+  <div class="logo-container">
+    <div class="rotating-ring"></div>
+    <img src="your-logo.png" alt="Logo" class="logo-img">
+  </div>
+</div>
+
+</body>
+</html>
