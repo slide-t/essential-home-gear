@@ -1,29 +1,42 @@
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-/>
 
-  .home-button {
-    display: inline-block;
-    padding: 10px 15px;
-    border: 1px solid #000;
-    background: #fff;
-    color: #000;
-    text-decoration: none;
-    font-family: sans-serif;
-    border-radius: 5px;
-    font-size: 16px;
-  }
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
 
-  .home-button i {
-    margin-right: 6px;
-  }
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: #fff;
+    }
 
-  .home-button:hover {
-    background: #000;
-    color: #fff;
-  }
+    .home-button {
+      display: inline-block;
+      padding: 15px 40px;
+      border: 1px solid #000;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      font-family: sans-serif;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-<a href="index.html" class="home-button">
-  <i class="fas fa-home"></i> Home
-</a>
+    .home-button i {
+      margin-right: 8px;
+    }
+
+    .home-button:hover {
+      background: #000;
+      color: #fff;
+    }
+
+
+  <a href="index.html" class="home-button">
+    <i class="fas fa-home"></i> Home
+  </a>
