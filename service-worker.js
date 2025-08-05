@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kitchen-store-v7.3';
+const CACHE_NAME = 'kitchen-store-v8.0';
 const URLS_TO_CACHE = [
   '/essentialkitchen-culinary/', // root for GitHub Pages
   '/essentialkitchen-culinary/index.html',
