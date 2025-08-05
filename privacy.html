@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Privacy Policy - Essential Home Gears</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     :root {
       --bg-light: #ffffff;
-      --bg-dark: #121212;
+      --bg-dark: #1a1a1a;
       --text-light: #000000;
       --text-dark: #ffffff;
-      --menu-bg: #f0f0f0;
-      --hover-bg: lightpink;
+      --nav-bg: #f0f0f0;
+      --nav-hover: #ffccdd;
     }
 
     body {
@@ -20,173 +20,180 @@
       font-family: Arial, sans-serif;
       background-color: var(--bg-light);
       color: var(--text-light);
-      transition: background-color 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s;
     }
 
-    body.dark {
+    body.dark-mode {
       background-color: var(--bg-dark);
       color: var(--text-dark);
     }
 
-    nav {
+    /* NAVBAR */
+    header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #333;
       padding: 10px 20px;
-      position: relative;
-      z-index: 2;
+      background-color: #001219;
+      color: white;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo img {
+      height: 40px;
     }
 
     .menu-toggle {
-      background: none;
-      border: none;
-      color: #fff;
       font-size: 24px;
       cursor: pointer;
     }
 
-    .nav-links {
-      position: absolute;
-      top: 100%;
+    /* DROPDOWN MENU */
+    .nav-menu {
+      position: fixed;
+      top: 60px;
       left: 0;
       right: 0;
-      background-color: var(--menu-bg);
+      background-color: #ccc;
       display: none;
       flex-direction: column;
-      text-align: center;
-      padding: 10px 0;
+      padding: 20px;
+      animation: slideDown 0.4s ease;
     }
 
-    .nav-links a {
+    @keyframes slideDown {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .nav-menu a {
       text-decoration: none;
-      color: #333;
-      padding: 10px 0;
-      transition: background-color 0.3s;
+      color: black;
+      padding: 12px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      transition: background 0.3s;
       font-size: 18px;
     }
 
-    .nav-links a:hover {
-      background-color: var(--hover-bg);
+    .nav-menu a:hover {
+      background-color: var(--nav-hover);
     }
 
-    .nav-links.show {
-      display: flex;
-    }
-
-    .logo {
-      width: 40px;
-      height: auto;
-    }
-
-    .dark-mode-toggle {
-      background: none;
-      border: none;
-      font-size: 20px;
-      color: #fff;
+    .close-menu {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 22px;
       cursor: pointer;
-      margin-right: 10px;
     }
 
-    .content {
+    .dark-mode .nav-menu a {
+      color: white;
+    }
+
+    .dark-mode .nav-menu {
+      background-color: #333;
+    }
+
+    .dark-mode .nav-menu a:hover {
+      background-color: #444;
+    }
+
+    .toggle-dark {
+      cursor: pointer;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    main {
+      padding: 100px 20px 30px;
       max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
+      margin: auto;
     }
 
-    h1, h2 {
-      color: inherit;
+    h1 {
+      text-align: center;
     }
 
-    @media (min-width: 768px) {
-      .nav-links {
-        flex-direction: row;
-        justify-content: center;
-      }
-      .nav-links a {
-        padding: 10px 20px;
+    /* Responsive */
+    @media (min-width: 600px) {
+      .nav-menu {
+        padding: 30px 100px;
       }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div>
-      <button class="menu-toggle" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <button class="dark-mode-toggle" onclick="toggleDarkMode()">
-        <i class="fas fa-moon"></i>
-      </button>
+
+  <header>
+    <div class="menu-toggle" id="openMenu">
+      <i class="fas fa-bars"></i>
     </div>
-    <img src="logo.png" alt="Logo" class="logo" />
-    <div class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="contact.html">Contact</a>
-      <a href="faqs.html">FAQs</a>
+
+    <div class="toggle-dark" id="toggleDark">
+      <i class="fas fa-moon"></i>
     </div>
-  </nav>
 
-  <div class="content">
-    <h1>Privacy Policy</h1>
-    <p>
-      At Essential Home Gears, we value your privacy. This policy outlines how we collect, use, and protect your information.
-    </p>
+    <div class="logo">
+      <img src="logo.png" alt="Essential Home Gears Logo">
+    </div>
+  </header>
 
-    <h2>Information We Collect</h2>
-    <p>
-      We may collect personal information like your name, email address, and usage data when you interact with our site.
-    </p>
-
-    <h2>How We Use Information</h2>
-    <p>
-      Your information helps us improve our services, personalize content, and communicate updates or promotional materials.
-    </p>
-
-    <h2>Cookies</h2>
-    <p>
-      We use cookies to enhance user experience. You can choose to disable cookies through your browser settings.
-    </p>
-
-    <h2>Third-Party Ads</h2>
-    <p>
-      We use third-party advertising (such as Google AdSense) which may use cookies and web beacons to serve ads based on your visits.
-    </p>
-
-    <h2>Data Security</h2>
-    <p>
-      We implement appropriate security measures to protect your information. However, no online transmission is 100% secure.
-    </p>
-
-    <h2>Children's Privacy</h2>
-    <p>
-      Our website does not knowingly collect information from children under 13 without parental consent.
-    </p>
-
-    <h2>Changes to this Policy</h2>
-    <p>
-      We may update this Privacy Policy occasionally. You are advised to review this page for any changes.
-    </p>
-
-    <h2>Consent</h2>
-    <p>
-      By using our website, you consent to our privacy policy and terms of service.
-    </p>
-
-    <h2>Contact</h2>
-    <p>
-      For any questions or concerns, contact us via our <a href="contact.html">Contact Page</a>.
-    </p>
+  <div class="nav-menu" id="navMenu">
+    <div class="close-menu" id="closeMenu"><i class="fas fa-times"></i></div>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="contact.html">Contact</a>
+    <a href="faqs.html">FAQs</a>
   </div>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('show');
-    }
+  <main>
+    <h1>Privacy Policy</h1>
+    <p>At Essential Home Gears, we value your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard the data you provide to us.</p>
 
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
+    <h2>Information Collection</h2>
+    <p>We may collect personal information such as your name, email address, and usage data when you visit our site, subscribe to our newsletter, or interact with our services.</p>
+
+    <h2>How We Use Information</h2>
+    <ul>
+      <li>To improve user experience</li>
+      <li>To send periodic emails and updates</li>
+      <li>To enhance our services and personalize content</li>
+    </ul>
+
+    <h2>Google AdSense</h2>
+    <p>We use third-party vendors, including Google, that use cookies to serve ads based on your prior visits to our website or other sites on the internet. You may opt out of personalized advertising by visiting Google Ads Settings.</p>
+
+    <h2>Cookies</h2>
+    <p>Cookies are used to improve user experience and track analytics. You can choose to disable cookies in your browser settings.</p>
+
+    <h2>Data Security</h2>
+    <p>We implement a variety of security measures to maintain the safety of your personal information.</p>
+
+    <h2>Third-party Links</h2>
+    <p>Our website may contain links to other sites. We are not responsible for the privacy practices of such sites.</p>
+
+    <h2>Policy Updates</h2>
+    <p>We may update this policy from time to time. Changes will be posted on this page.</p>
+
+    <p>If you have questions about our Privacy Policy, please contact us.</p>
+  </main>
+
+  <script>
+    const toggleDark = document.getElementById('toggleDark');
+    toggleDark.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const navMenu = document.getElementById('navMenu');
+
+    openMenu.onclick = () => navMenu.style.display = 'flex';
+    closeMenu.onclick = () => navMenu.style.display = 'none';
   </script>
 </body>
 </html>
