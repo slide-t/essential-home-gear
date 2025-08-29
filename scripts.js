@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     { name: "Wall Art Canvas", price: 12000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6NQZTzrMhGPrPakzJ0V1w9qFO2hEZ8lt3aNCZdqVB5kI8vCv-6IO2CMSgrEb06oNu4HXV28DX5tL0glmx1v5noxzq_xWsUkuLM28M1kVU9mBCUARkF_xPBO6HnZltYNiI7byiE2oVmCIFvq3rNYG1bntxUnI-B0cdV2dKn3asCcrm5QZ4rpCtfgC93cc/s320/1000050069.png", category: "decor" },
 
     // Laptops
-    { name: "ASUS VivoBook 15", price: 230000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAsus1.jpg", category: "asus" },
+    { name: "ASUS ROG Strix G16 (2025) Gaming", price: 230000, image: "https://m.media-amazon.com/images/I/71zuMSjwDfL._AC_SY300_SX300_QL70_FMwebp_.jpg ", category: "asus" },
     { name: "ASUS ZenBook 14", price: 390000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAsus3.jpg", category: "asus" },
     { name: "Acer Chromebook 314", price: 160000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAcer1.jpg", category: "acer" },
     { name: "Acer Chromebook Plus 515", price: 280000, image: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgAcer4.jpg", category: "acer" },
