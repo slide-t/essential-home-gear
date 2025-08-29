@@ -7,6 +7,7 @@ const URLS_TO_CACHE = [
   '/essentialkitchen-culinary/computers.html',
   '/essentialkitchen-culinary/main.css',
   '/essentialkitchen-culinary/script.js',
+  '/essentialkitchen-culinary/scripts.js',
   '/essentialkitchen-culinary/manifest.json',
   '/essentialkitchen-culinary/footer.html',
   '/essentialkitchen-culinary/footer-dropdown.js',
