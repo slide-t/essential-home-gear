@@ -32,73 +32,21 @@
 </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Essential Home Gear</title>
-  
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+    <style>
+    * {   box-sizing: border-box  }  body {  font-family: Arial, sans-serif;margin: 0;  padding: 0;  background: #f5f5f5;  }
+      .grid { display: grid;  gap: 1rem;  padding: 1rem;   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));  }
+      .card {  background: #fff; border-radius: 8px; padding: 1rem; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1) position: relative; }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-    }
-
-    .grid {
-      display: grid;
-      gap: 1rem;
-      padding: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-    }
-
-    .card img {
-      max-width: 100%;
-      height: auto;
+    .card img { max-width: 100%; height: auto; border-radius: 5px; }
+    .card h4 {margin: 0.5rem 0; }
+    .btn { padding: 8px 12px;border: none;
       border-radius: 5px;
-    }
-
-    .card h4 {
-      margin: 0.5rem 0;
-    }
-
-    .btn {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      margin-top: 0.5rem;
-      cursor: pointer;
-      width: 100%;
-      font-weight: bold;
-    }
-
-    .add-btn {
-      background-color: #e63946;
-    }
-
-    .add-btn:hover {
-      background-color: #ff6b6b;
-    }
-
+      color: #fff; margin-top: 0.5rem; cursor: pointer; width: 100%;font-weight: bold; }
+    .add-btn { background-color: #e63946; }
+    .add-btn:hover {background-color: #ff6b6b;
     .buy-btn, #buy-btn {
-      background-color: orange;
-      margin-top: 0.3rem;
-      display: none;
-    }
-
-    .buy-btn:hover {
-      background-color: #ffaa33;
-    }
+      background-color: orange; margin-top: 0.3rem;display: none; }
+    .buy-btn:hover {background-color: #ffaa33;}
 #cartIcon {
   position: fixed;
   top: 180px;
@@ -252,18 +200,6 @@
   text-align: center;
   flex: 1;
 }
-
-/*.logo-icon {
-  font-size: 22px;
-  border:2px solid #eee;
-  border-radius:50%;
-  padding: 8px;
-}
-    .logo-icon img {
-width:50px;
- border:2px solid #eee;
-  border-radius:50%;
-}*/
   .modal-overlay {
   position: fixed;
   top: 0;
@@ -288,8 +224,6 @@ width:50px;
   backdrop-filter: blur(10px); /* glass effect */
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-
 .modal-buttons {
   margin-top: 1rem;
   display: flex;
@@ -308,19 +242,15 @@ width:50px;
   align-items: center;
   justify-content: center;
 }
-
 .btn-whatsapp {
   background-color: #25D366;
 }
-
 .btn-email {
   background-color: #E63946;
 }
-
 .btn-whatsapp:hover {
   background-color: #1da851;
 }
-
 .btn-email:hover {
   background-color: #cc2e3e;
 }
